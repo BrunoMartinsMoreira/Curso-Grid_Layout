@@ -9,7 +9,7 @@ body {
   font-family: "Vollkorn", serif;
 }
 img {
-  max-width: 100%;
+  width: 100%;
   display: block;
   border-radius: 5px;
 }
@@ -165,6 +165,7 @@ p {
   align-content: start;
   padding: 30px;
   gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
 }
 
 .citacao,
@@ -202,4 +203,74 @@ p {
   color: #fefefe;
   text-align: center;
   padding: 30px;
+}
+/*RESPONSIVO*/
+@media (max-width: 1200px) {
+  .estrutura {
+    grid-template-areas:
+      "header header header"
+      "sidenav contentContainer contentContainer"
+      "sidenav anuncios anuncios"
+      "footer footer footer";
+  }
+}
+@media (max-width: 768px) {
+  .estrutura {
+    grid-template-columns: 100%;
+    grid-template-areas:
+      "header"
+      "sidenav"
+      "contentContainer"
+      "anuncios"
+      "footer";
+  }
+  .header {
+    grid-template-columns: auto;
+  }
+  .header nav a {
+    font-size: 1em;
+  }
+  .header li + li {
+    margin-left: 15px;
+  }
+  .logo {
+    margin-bottom: 20px;
+  }
+  .sidenav {
+    position: relative;
+    padding: 0 30px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+  }
+  .sidenav::after {
+    content: "→";
+    position: absolute;
+    top: 1px;
+    right: 30px;
+    color: rgba(0, 0, 0, 0.5);
+    animation: seta 0.5s ease-in infinite alternate;
+  }
+  .sidenav ul {
+    display: flex;
+  }
+  .sidenav li {
+    flex: 1 0 90px;
+  }
+  .sidenav li a {
+    margin: 30px 30px 30px 0;
+  }
+}
+@media (max-width: 600px) {
+  .content {
+    grid-template-columns: auto;
+  }
+}
+@keyframes seta {
+  from {
+    right: 30px;
+  }
+  to {
+    right: 20px;
+  }
 }
